@@ -1,3 +1,5 @@
+import math
+
 class Value:
 
     def __init__(self, data, _children=(), _op='', label=''):
@@ -67,8 +69,31 @@ class Value:
         out._backward = _backward
         return out
            
-           
     
+    def exp(self):
+        x = self.data
+        out = Value(math.exp(x), (self, ), 'exp')
+        def _backward():
+            self.grad += out.data * out.grad
+        out._backward = _backward
+        return out
+           
+
+    # commutavity and right operants
+    def __rmul__(self,other):
+        return self * other
+    
+    def __radd__(self,other):
+        return self + other
+    
+    def __rsub__(self,other):
+         return self._checktype(other) - self
+    
+    # __rtruediv__ will be added later (it needs more advance techniques due to the derivative calculations)
+
+
+
+
     def backward(self):
         topo = []
         visited = set()
