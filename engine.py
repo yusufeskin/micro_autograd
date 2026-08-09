@@ -1,7 +1,6 @@
 import math
 
 class Value:
-
     def __init__(self, data, _children=(), _op='', label=''):
         self.data = data
         self._prev = set(_children)
@@ -77,7 +76,6 @@ class Value:
             self.grad += out.data * out.grad
         out._backward = _backward
         return out
-           
 
     # commutavity and right operants
     def __rmul__(self,other):
@@ -91,9 +89,7 @@ class Value:
     
     # __rtruediv__ will be added later (it needs more advance techniques due to the derivative calculations)
 
-
-
-
+    # topological sort
     def backward(self):
         topo = []
         visited = set()
