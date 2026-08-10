@@ -59,7 +59,7 @@ class Value:
         if other is NotImplemented:
             return NotImplemented
         if other.data == 0:
-            raise ZeroDivisionError("Sıfıra bölme hatası!")
+            raise ZeroDivisionError("zero div error!")
 
         out = Value(self.data / other.data, (self, other), '/')
         def _backward():
@@ -104,16 +104,3 @@ class Value:
         self.grad = 1.0
         for node in reversed(topo):
             node._backward()
-
-a = Value(3.0, label='a')
-b = Value(2.0, label='b')
-e = Value(-4.0, label='e')
-
-c = a * b; c.label='c'
-d = c + e; d.label='d'
-print(d)
-print(c)
-d.grad = 1.0
-d.backward()
-print(f"a.grad: {a.grad}")
-print(f"b.grad: {b.grad}")
