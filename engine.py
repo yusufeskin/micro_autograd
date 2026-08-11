@@ -76,6 +76,14 @@ class Value:
             self.grad += out.data * out.grad
         out._backward = _backward
         return out
+    
+    def tanh(self):
+        x = self.data
+        out = Value((math.exp(x) - math.exp(-x)) / (math.exp(x) + math.exp(-x)), (self, ), 'tanh')
+        def _backward():
+            self.grad += (1 - out.data ** 2) * out.grad
+        out._backward = _backward
+        return out
 
     # commutavity and right operants
     def __rmul__(self,other):
