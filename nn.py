@@ -11,6 +11,8 @@ class Neuron:
         self.b = Value(random.uniform(-1,1))
 
     def __call__(self, x):
+        if len(self.w) != len(x):
+            raise ValueError('Dimension mismatch')
         # w*x + b
         act = []
         for wi, xi in zip(self.w, x):
@@ -34,7 +36,7 @@ class Layer:
         outs = []
         for n in self.neurons:
             outs.append(n(x))
-        return outs[0] if len(outs) == 1 else outs
+        return outs  # now it always returns a list
     
     def parameters(self):
         params = []
