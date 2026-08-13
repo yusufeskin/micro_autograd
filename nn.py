@@ -19,7 +19,7 @@ class Neuron:
             mult_value = wi*xi
             act.append(mult_value)
 
-        sum_act = sum(act) + self.b
+        sum_act = sum(act, self.b)
         out = sum_act.tanh()
         return out
     
@@ -49,8 +49,9 @@ class MLP:
     def __init__(self, nin, nouts):
         sz = [nin] + nouts
         self.layers = []
-        for i in range(len(nouts)):
-            self.layers.append(Layer(sz[i], sz[i+1]))
+        for i in range(len(sz)- 1):
+            layer = Layer(sz[i], sz[i+1])
+            self.layers.append(layer)
             
     def __call__(self, x):
         for layer in self.layers:
