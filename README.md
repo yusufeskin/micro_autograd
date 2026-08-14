@@ -52,7 +52,12 @@ loss = sum(((yout[0] - ygt) ** 2 for ygt, yout in zip(ys, ypred)))
 loss.backward()
 print(f"Total Loss: {loss.data}")
 
-# 5. Visualize the Computational Graph
+# 5. One step gradient descent (looped version can be found in train.py)
+for p in n.parameters():
+    p.data += -0.01 * p.grad
+
+
+# 6. Visualize the Computational Graph
 dot = draw_dot(loss)
 dot.render('nn_graph', view=True, cleanup=True)
 ```
@@ -62,7 +67,7 @@ dot.render('nn_graph', view=True, cleanup=True)
 - [x] **Computational Graph & Automatic Differentiation:** Scalar-valued `Value` engine with topological sort and backpropagation.
 - [x] **Neural Network API:** Implementation of `Neuron`, `Layer`, and `MLP` architectures.
 - [x] **Visualization Tooling:** DAG rendering pipeline using Graphviz.
-- [ ] **Training Loop (Gradient Descent):** Implementing a full optimization routine to update the isolated parameter space iteratively ($w \leftarrow w - \alpha \cdot \nabla w$) over multiple epochs.
+- [x] **Training Loop (Gradient Descent):** Implementing a full optimization routine to update the isolated parameter space iteratively ($w \leftarrow w - \alpha \cdot \nabla w$) over multiple epochs.
 - [ ] **Vectorized Operations (Tensor Conversion):** Extending the scalar topology into $\mathbb{R}^n$ vector spaces using NumPy to replace `for` loops with optimized matrix multiplications (Dot Products) for significant performance gains.
 
 ## Acknowledgments
