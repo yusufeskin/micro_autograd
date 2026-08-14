@@ -1,7 +1,7 @@
-# Autograd: A Scalar-Valued Automatic Differentiation Engine
+# mini-torch: A Scalar-Valued Automatic Differentiation Engine
 
 ## Abstract
-This repository implements a dynamic, reverse-mode automatic differentiation (AD) engine from scratch. Operating over a custom Directed Acyclic Graph (DAG) architecture, the engine evaluates mathematical expressions in a forward pass and computes exact gradients via backpropagation. It includes a built-in Neural Network API, serving as a foundational differential calculus engine for constructing and optimizing parameter-space topologies, such as Multi-Layer Perceptrons.
+Inspired by the core mechanics of PyTorch, **mini-torch** is a dynamic, reverse-mode automatic differentiation (AD) engine built entirely from scratch. Operating over a custom Directed Acyclic Graph (DAG) architecture, the engine evaluates mathematical expressions in a forward pass and computes exact gradients via backpropagation. It includes a built-in Neural Network API, serving as a foundational differential calculus engine for constructing and optimizing parameter-space topologies, such as Multi-Layer Perceptrons.
 
 ## Mathematical Framework
 
